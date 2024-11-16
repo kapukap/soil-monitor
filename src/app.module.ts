@@ -6,6 +6,7 @@ import { SoilTypesModule } from './soil-types/soil-types.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
+import { UsersRolesModule } from './users-roles/users-roles.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { RolesModule } from './roles/roles.module';
     AuthModule,
     UsersModule,
     RolesModule,
+    UsersRolesModule,
   ],
 })
 export class AppModule {}

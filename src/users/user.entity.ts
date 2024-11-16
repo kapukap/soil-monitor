@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Role } from '../roles/role.entity';
 
 @Entity()
@@ -12,25 +6,24 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ unique: true })
+  @Column('text', { unique: true })
   nick: string;
 
-  @Column({ unique: true })
+  @Column('text', { unique: true })
   email: string;
 
-  @Column({ nullable: true })
-  firstName?: string;
+  @Column('text', { nullable: true })
+  firstName?: string | null;
 
-  @Column({ nullable: true })
-  middleName?: string;
+  @Column('text', { nullable: true })
+  middleName?: string | null;
 
-  @Column({ nullable: true })
-  lastName?: string;
+  @Column('text', { nullable: true })
+  lastName?: string | null;
 
-  @Column()
+  @Column('text')
   password: string;
 
-  @ManyToMany(() => Role, (role) => role.users)
-  @JoinTable() // TypeORM автоматически создаст промежуточную таблицу
+  @OneToMany(() => Role, (role) => role.users)
   roles: Role[];
 }
