@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { SoilTypesService } from './soil-types.service';
 import { SoilType } from './soil-types.entity';
-import { UpdateSoilTypeNameDto } from './dto/update-soil-type-name.dto';
+import { UpdateSoilTypeDto } from './dto/update-soil-type.dto';
 import { CreateSoilTypeDto } from './dto/create-soil-type.dto';
 
 @Controller('soil-types')
@@ -31,14 +31,12 @@ export class SoilTypesController {
     return this.soilTypesService.deleteSoilType(id);
   }
 
-  @Patch('/:id/name')
+  @Patch('/:id')
   updateName(
     @Param('id') id: string,
-    @Body() updateSoilTypeNameDto: UpdateSoilTypeNameDto,
+    @Body() updateSoilTypeDto: UpdateSoilTypeDto,
   ): Promise<SoilType> {
-    const { name } = updateSoilTypeNameDto;
-
-    return this.soilTypesService.updateSoilTypeName(id, name);
+    return this.soilTypesService.updateSoilTypeName(id, updateSoilTypeDto);
   }
 
   @Post()

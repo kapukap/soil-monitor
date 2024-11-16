@@ -5,6 +5,7 @@ import { config } from 'dotenv';
 
 import { UsersData1731716069417 } from './migrations/1731716069417-UsersData';
 import { RolesData1731716186965 } from './migrations/1731716186965-RolesData';
+import { SoilTypeData1731772118902 } from './migrations/1731772118902-SoilTypeData';
 
 config();
 
@@ -18,7 +19,11 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: false, // Обычно для продакшн-среды
   logging: true,
-  migrations: [UsersData1731716069417, RolesData1731716186965], // Укажите миграции
+  migrations: [
+    UsersData1731716069417,
+    RolesData1731716186965,
+    SoilTypeData1731772118902,
+  ], // Укажите миграции
   entities: [User, Role],
   // subscribers: [],
 });

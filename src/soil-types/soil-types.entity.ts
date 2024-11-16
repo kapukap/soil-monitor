@@ -7,4 +7,7 @@ export class SoilType {
 
   @Column('text')
   name: string;
+
+  @Column('text', { nullable: true })
+  description: string | null;
 }

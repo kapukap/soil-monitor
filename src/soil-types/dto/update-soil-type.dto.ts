@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsOptional } from 'class-validator';
 
-export class CreateSoilTypeDto {
+export class UpdateSoilTypeDto {
   @IsNotEmpty()
   name: string;
 

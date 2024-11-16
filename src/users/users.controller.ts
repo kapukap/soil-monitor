@@ -1,16 +1,15 @@
 import {
-  Controller,
-  Get,
   Body,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
   Patch,
   Post,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.entity';
-import { AuthCredentialsDto } from '../auth/dto/auth-credentials.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('users')

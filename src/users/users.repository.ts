@@ -11,7 +11,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { AuthCredentialsDto } from '../auth/dto/auth-credentials.dto';
 import { ErrorCodes } from '../Utils/Errors/errors-constaints.enum';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { Role } from '../roles/role.entity';
 
 @Injectable()
 export class UsersRepository extends Repository<User> {

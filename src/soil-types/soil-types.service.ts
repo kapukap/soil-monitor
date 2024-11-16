@@ -2,6 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { SoilType } from './soil-types.entity';
+import { UpdateSoilTypeDto } from './dto/update-soil-type.dto';
+import { CreateSoilTypeDto } from './dto/create-soil-type.dto';
 
 @Injectable()
 export class SoilTypesService {
@@ -29,15 +31,24 @@ export class SoilTypesService {
     }
   }
 
-  async updateSoilTypeName(id: string, name: string): Promise<SoilType> {
+  async updateSoilTypeName(
+    id: string,
+    updateSoilTypeDto: UpdateSoilTypeDto,
+  ): Promise<SoilType> {
     const soilType = await this.getSoilTypeById(id);
+    const { name, description } = updateSoilTypeDto;
+
     soilType.name = name;
+    soilType.description = description;
+
     await this.soilTypeRepository.save(soilType);
     return soilType;
   }
 
-  async createSoilType(soilData: Partial<SoilType>): Promise<SoilType> {
-    const soilType = this.soilTypeRepository.create(soilData);
+  async createSoilType(
+    createSoilTypeDto: CreateSoilTypeDto,
+  ): Promise<SoilType> {
+    const soilType = this.soilTypeRepository.create(createSoilTypeDto);
     return this.soilTypeRepository.save(soilType);
   }
 }
