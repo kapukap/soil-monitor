@@ -11,19 +11,19 @@ config();
 
 // To create migration typeorm migration:create path/name
 export const AppDataSource = new DataSource({
-  type: 'postgres',
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT),
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  synchronize: false, // Обычно для продакшн-среды
-  logging: true,
-  migrations: [
-    UsersData1731716069417,
-    RolesData1731716186965,
-    SoilTypeData1731772118902,
-  ], // Укажите миграции
-  entities: [User, Role],
-  // subscribers: [],
+    type: 'postgres',
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    synchronize: false, // Обычно для продакшн-среды
+    logging: true,
+    migrations: [
+        UsersData1731716069417,
+        RolesData1731716186965,
+        SoilTypeData1731772118902,
+    ], // Укажите миграции
+    entities: [User, Role],
+    // subscribers: [],
 });

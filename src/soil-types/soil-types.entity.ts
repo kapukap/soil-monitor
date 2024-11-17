@@ -3,11 +3,11 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class SoilType {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+      id: string;
 
   @Column('text')
-  name: string;
+      name: string;
 
   @Column('text', { nullable: true })
-  description: string | null;
+      description: string | null;
 }

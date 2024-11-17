@@ -3,20 +3,20 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Soil {
   @PrimaryGeneratedColumn()
-  id: number;
+      id: number;
 
   @Column('float')
-  moisture: number;
+      moisture: number;
 
   @Column('float')
-  temperature: number;
+      temperature: number;
 
   @Column('float')
-  acidity: number;
+      acidity: number;
 
   @Column('float')
-  salinity: number;
+      salinity: number;
 
   @Column('text')
-  nutrients: string;
+      nutrients: string;
 }

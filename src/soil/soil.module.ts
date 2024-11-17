@@ -6,8 +6,8 @@ import { Soil } from './soil.entity';
 import { AuthModule } from '../auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Soil]), AuthModule],
-  controllers: [SoilController],
-  providers: [SoilService],
+    imports: [TypeOrmModule.forFeature([Soil]), AuthModule],
+    controllers: [SoilController],
+    providers: [SoilService],
 })
 export class SoilModule {}

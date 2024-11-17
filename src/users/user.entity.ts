@@ -4,26 +4,26 @@ import { Role } from '../roles/role.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+      id: string;
 
   @Column('text', { unique: true })
-  nick: string;
+      nick: string;
 
   @Column('text', { unique: true })
-  email: string;
+      email: string;
 
   @Column('text', { nullable: true })
-  firstName?: string | null;
+      firstName?: string | null;
 
   @Column('text', { nullable: true })
-  middleName?: string | null;
+      middleName?: string | null;
 
   @Column('text', { nullable: true })
-  lastName?: string | null;
+      lastName?: string | null;
 
   @Column('text')
-  password: string;
+      password: string;
 
   @OneToMany(() => Role, (role) => role.users)
-  roles: Role[];
+      roles: Role[];
 }

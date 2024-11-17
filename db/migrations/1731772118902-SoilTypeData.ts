@@ -1,8 +1,8 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class SoilTypeData1731772118902 implements MigrationInterface {
-  public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`
         INSERT INTO "soil_type" ("name", "description")
         VALUES 
             ('Чорнозем', 'Родючий ґрунт, багатий органічними речовинами, характерний для степів і лісостепів.'),
@@ -14,9 +14,9 @@ export class SoilTypeData1731772118902 implements MigrationInterface {
             ('Солонці', 'Ґрунти з високим вмістом солей, що утворюються в умовах посушливого клімату.'),
             ('Лугові ґрунти', 'Родючі ґрунти, що утворюються в лугових зонах, багаті на поживні речовини та органічні елементи.');
     `);
-  }
+    }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query('DELETE FROM soil_type');
-  }
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query('DELETE FROM soil_type');
+    }
 }

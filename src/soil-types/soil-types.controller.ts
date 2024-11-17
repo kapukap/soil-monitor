@@ -1,11 +1,11 @@
 import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Param,
-  Delete,
-  Patch,
+    Controller,
+    Get,
+    Post,
+    Body,
+    Param,
+    Delete,
+    Patch,
 } from '@nestjs/common';
 import { SoilTypesService } from './soil-types.service';
 import { SoilType } from './soil-types.entity';
@@ -14,21 +14,21 @@ import { CreateSoilTypeDto } from './dto/create-soil-type.dto';
 
 @Controller('soil-types')
 export class SoilTypesController {
-  constructor(private readonly soilTypesService: SoilTypesService) {}
+    constructor(private readonly soilTypesService: SoilTypesService) {}
 
   @Get()
-  async getAll(): Promise<SoilType[]> {
-    return this.soilTypesService.getAll();
-  }
+    async getAll(): Promise<SoilType[]> {
+        return this.soilTypesService.getAll();
+    }
 
   @Get('/:id')
   async getById(@Param('id') id: string): Promise<SoilType> {
-    return this.soilTypesService.getSoilTypeById(id);
+      return this.soilTypesService.getSoilTypeById(id);
   }
 
   @Delete('/:id')
   delete(@Param('id') id: string): Promise<void> {
-    return this.soilTypesService.deleteSoilType(id);
+      return this.soilTypesService.deleteSoilType(id);
   }
 
   @Patch('/:id')
@@ -36,13 +36,13 @@ export class SoilTypesController {
     @Param('id') id: string,
     @Body() updateSoilTypeDto: UpdateSoilTypeDto,
   ): Promise<SoilType> {
-    return this.soilTypesService.updateSoilTypeName(id, updateSoilTypeDto);
+      return this.soilTypesService.updateSoilTypeName(id, updateSoilTypeDto);
   }
 
   @Post()
   async create(
     @Body() createSoilTypeDto: CreateSoilTypeDto,
   ): Promise<SoilType> {
-    return this.soilTypesService.createSoilType(createSoilTypeDto);
+      return this.soilTypesService.createSoilType(createSoilTypeDto);
   }
 }

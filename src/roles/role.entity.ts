@@ -4,11 +4,11 @@ import { User } from '../users/user.entity';
 @Entity()
 export class Role {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+      id: string;
 
   @Column('text', { unique: true })
-  name: string;
+      name: string;
 
   @OneToMany(() => User, (user) => user.roles)
-  users: User[];
+      users: User[];
 }

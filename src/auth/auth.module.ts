@@ -10,13 +10,13 @@ import { JwtConfig } from '../config/jwt.config';
 import { JwtStrategy } from './jwt.strategy';
 
 @Module({
-  imports: [
-    PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule.register(JwtConfig),
-    TypeOrmModule.forFeature([User]),
-  ],
-  controllers: [AuthController],
-  providers: [AuthService, UsersRepository, JwtStrategy],
-  exports: [JwtStrategy, PassportModule],
+    imports: [
+        PassportModule.register({ defaultStrategy: 'jwt' }),
+        JwtModule.register(JwtConfig),
+        TypeOrmModule.forFeature([User]),
+    ],
+    controllers: [AuthController],
+    providers: [AuthService, UsersRepository, JwtStrategy],
+    exports: [JwtStrategy, PassportModule],
 })
 export class AuthModule {}

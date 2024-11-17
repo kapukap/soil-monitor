@@ -2,8 +2,8 @@ import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateSoilTypeDto {
   @IsNotEmpty()
-  name: string;
+      name: string;
 
   @IsOptional()
-  description: string;
+      description: string;
 }
