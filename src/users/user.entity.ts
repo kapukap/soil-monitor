@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Role } from '../roles/role.entity';
+import { Bot } from '../bots/bot.entity';
 
 @Entity()
 export class User {
@@ -26,4 +27,8 @@ export class User {
 
   @OneToMany(() => Role, (role) => role.users)
       roles: Role[];
+
+  // Связь один ко многим с сущностью Bot (один пользователь может иметь несколько ботов, но для каждого типа мессенджера только один)
+  @OneToMany(() => Bot, (bot) => bot.user)
+      bots: Bot[];
 }

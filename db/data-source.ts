@@ -6,6 +6,9 @@ import { config } from 'dotenv';
 import { UsersData1731716069417 } from './migrations/1731716069417-UsersData';
 import { RolesData1731716186965 } from './migrations/1731716186965-RolesData';
 import { SoilTypeData1731772118902 } from './migrations/1731772118902-SoilTypeData';
+import { Bot } from "../src/bots/bot.entity";
+import { BotType } from "../src/bot-types/bot-types.entity";
+import { BotTypesData1731955262957 } from "./migrations/1731955262957-BotTypesData";
 
 config();
 
@@ -23,7 +26,8 @@ export const AppDataSource = new DataSource({
         UsersData1731716069417,
         RolesData1731716186965,
         SoilTypeData1731772118902,
+        BotTypesData1731955262957,
     ], // Укажите миграции
-    entities: [User, Role],
+    entities: [User, Role, Bot, BotType],
     // subscribers: [],
 });
