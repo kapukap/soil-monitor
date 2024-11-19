@@ -9,6 +9,8 @@ import { SoilTypeData1731772118902 } from './migrations/1731772118902-SoilTypeDa
 import { Bot } from "../src/bots/bot.entity";
 import { BotType } from "../src/bot-types/bot-types.entity";
 import { BotTypesData1731955262957 } from "./migrations/1731955262957-BotTypesData";
+import { Device } from '../src/device/device.entity';
+import { DeviceData1731974689737 } from './migrations/1731974689737-DeviceData';
 
 config();
 
@@ -27,7 +29,8 @@ export const AppDataSource = new DataSource({
         RolesData1731716186965,
         SoilTypeData1731772118902,
         BotTypesData1731955262957,
+        DeviceData1731974689737
     ], // Укажите миграции
-    entities: [User, Role, Bot, BotType],
+    entities: [User, Role, Bot, BotType, Device],
     // subscribers: [],
 });

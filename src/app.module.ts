@@ -9,6 +9,7 @@ import { RolesModule } from './roles/roles.module';
 import { UsersRolesModule } from './users-roles/users-roles.module';
 import { BotTypesModule } from './bot-types/bot-types.module';
 import { BotsModule } from './bots/bots.module';
+import { DeviceModule } from './device/device.module';
 
 @Module({
     imports: [
@@ -36,7 +37,8 @@ import { BotsModule } from './bots/bots.module';
         RolesModule,
         UsersRolesModule,
         BotTypesModule,
-        BotsModule
+        BotsModule,
+        DeviceModule
     ],
 })
 export class AppModule {}
