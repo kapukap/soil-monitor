@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SoilType } from './soil-types.entity';
+import { SoilType, SoilTypeCodes } from './soil-types.entity';
 import { UpdateSoilTypeDto } from './dto/update-soil-type.dto';
 import { CreateSoilTypeDto } from './dto/create-soil-type.dto';
 
@@ -21,6 +21,11 @@ export class SoilTypesService {
 
         if (!soilType) throw new NotFoundException();
         return soilType;
+    }
+
+
+    async getSoilTypeIdByCode(code: SoilTypeCodes): Promise<SoilType> {
+        return  await this.soilTypeRepository.findOneBy({ code });
     }
 
     async deleteSoilType(id: string): Promise<void> {

@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { SoilModule } from './soil/soil.module';
 import { SoilTypesModule } from './soil-types/soil-types.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
@@ -10,6 +9,7 @@ import { UsersRolesModule } from './users-roles/users-roles.module';
 import { BotTypesModule } from './bot-types/bot-types.module';
 import { BotsModule } from './bots/bots.module';
 import { DeviceModule } from './device/device.module';
+import { SoilIndicatorsModule } from './soil-indicators/soil-indicators.module';
 
 @Module({
     imports: [
@@ -30,7 +30,7 @@ import { DeviceModule } from './device/device.module';
                 synchronize: true,
             }),
         }),
-        SoilModule,
+        SoilIndicatorsModule,
         SoilTypesModule,
         AuthModule,
         UsersModule,

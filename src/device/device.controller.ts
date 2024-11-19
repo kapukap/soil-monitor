@@ -27,6 +27,12 @@ export class DeviceController {
       return this.deviceService.getDeviceById(id);
   }
 
+
+  @Get('/:id/soil-indicators')
+  async getSoilIndicatorsById(@Param('id') id: string): Promise<Device> {
+      return this.deviceService.getDeviceById(id);
+  }
+
   @Delete('/:id')
   delete(@Param('id') id: string): Promise<void> {
       return this.deviceService.deleteDevice(id);

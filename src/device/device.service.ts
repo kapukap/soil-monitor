@@ -113,6 +113,5 @@ export class DeviceService {
                     throw new InternalServerErrorException();
             }
         }
-
     }
 }

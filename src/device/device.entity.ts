@@ -1,11 +1,12 @@
 import {
     Column,
     Entity,
-    JoinColumn,
-    ManyToOne,
-    PrimaryGeneratedColumn, Unique
-} from "typeorm";
+    JoinColumn, ManyToMany,
+    ManyToOne, OneToMany,
+    PrimaryGeneratedColumn, Unique,
+} from 'typeorm';
 import { User } from '../users/user.entity';
+import { SoilIndicators } from '../soil-indicators/soil-indicators.entity';
 
 @Entity()
 @Unique(['userId', 'code'])
@@ -25,4 +26,7 @@ export class Device {
 
   @Column({nullable: true})
       userId: string;  // Внешний ключ, связывающий с User
+
+  @OneToMany(() => SoilIndicators, (soilIndicator) => soilIndicator.device)
+      soilIndicators: SoilIndicators[];
 }
