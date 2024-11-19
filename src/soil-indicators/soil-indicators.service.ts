@@ -30,11 +30,13 @@ export class SoilIndicatorsService {
 
         const device = await this.deviceService.getDeviceByCode(deviceCode);
         const soilType = await this.soilTypesService.getSoilTypeIdByCode(soilTypeCode);
+
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const newSoil: SoilIndicators = this.soilIndicatorsRepository.create(createSoilIndicatorsDto);
         if (device) newSoil.deviceId = device.id;
         newSoil.soilTypeId = soilType.id;
+
 
         return this.soilIndicatorsRepository.save(newSoil);
     }

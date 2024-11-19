@@ -27,6 +27,12 @@ export class DeviceService {
         // return bot;
     }
 
+    async getDeviceByCode(code: string): Promise<Device> {
+        return  await this.deviceRepository.findOneBy({ code });
+    }
+
+
+
     async deleteDevice(id: string): Promise<void> {
         const result = await this.deviceRepository.delete({ id });
 
