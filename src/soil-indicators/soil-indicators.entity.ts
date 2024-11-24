@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable, JoinColumn } from 'typeorm';
 import { SoilType } from '../soil-types/soil-types.entity';
-import { Device } from '../device/device.entity';
+import { Device } from '../devices/device.entity';
 
 @Entity()
 export class SoilIndicators {

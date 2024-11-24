@@ -8,7 +8,7 @@ import { RolesModule } from './roles/roles.module';
 import { UsersRolesModule } from './users-roles/users-roles.module';
 import { BotTypesModule } from './bot-types/bot-types.module';
 import { BotsModule } from './bots/bots.module';
-import { DeviceModule } from './device/device.module';
+import { DevicesModule } from './devices/devices.module';
 import { SoilIndicatorsModule } from './soil-indicators/soil-indicators.module';
 
 @Module({
@@ -38,7 +38,7 @@ import { SoilIndicatorsModule } from './soil-indicators/soil-indicators.module';
         UsersRolesModule,
         BotTypesModule,
         BotsModule,
-        DeviceModule
+        DevicesModule
     ],
 })
 export class AppModule {}

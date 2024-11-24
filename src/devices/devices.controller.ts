@@ -7,16 +7,16 @@ import {
     Patch,
     Post,
 } from '@nestjs/common';
-import { DeviceService } from './device.service';
+import { DevicesService } from './devices.service';
 import { UpdateDeviceNameDto } from './dto/update-device-name.dto';
 import { CreateDeviceDto } from './dto/create-device.dto';
 import { Device } from './device.entity';
 import { UpdateDeviceUserDto } from './dto/update-device-user.dto';
 
 
-@Controller('device')
-export class DeviceController {
-    constructor(private readonly deviceService: DeviceService) {}
+@Controller('devices')
+export class DevicesController {
+    constructor(private readonly deviceService: DevicesService) {}
   @Get()
     async getAll(): Promise<Device[]> {
         return this.deviceService.getAll();

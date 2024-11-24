@@ -9,7 +9,7 @@ import { SoilTypeData1731772118902 } from './migrations/1731772118902-SoilTypeDa
 import { Bot } from "../src/bots/bot.entity";
 import { BotType } from "../src/bot-types/bot-types.entity";
 import { BotTypesData1731955262957 } from "./migrations/1731955262957-BotTypesData";
-import { Device } from '../src/device/device.entity';
+import { Device } from '../src/devices/device.entity';
 import { DeviceData1731974689737 } from './migrations/1731974689737-DeviceData';
 import { SoilType } from '../src/soil-types/soil-types.entity';
 import { SoilIndicators } from '../src/soil-indicators/soil-indicators.entity';

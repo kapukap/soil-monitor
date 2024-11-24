@@ -41,4 +41,16 @@ export class UsersService {
     // async addRoleToUser(userId: string, roleId: string): Promise<User> {
     //   return this.usersRepository.addRoleToUser(userId, roleId);
     // }
+
+    async getUserRoles(userId: string): Promise<User[]> {
+        console.log(userId);
+        // relations: [''],
+        //   select: {
+        //     user: {
+        //         nick: true
+        //     },
+        return this.usersRepository.find({
+            relations: ['roles']
+        });
+    }
 }

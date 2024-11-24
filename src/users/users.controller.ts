@@ -51,4 +51,9 @@ export class UsersController {
   // ) {
   //   return await this.usersService.addRoleToUser(userId, roleId);
   // }
+
+  @Get('/:id/roles')
+  async getUserRoles(@Param('id') id: string): Promise<User[]> {
+      return this.usersService.getUserRoles(id);
+  }
 }

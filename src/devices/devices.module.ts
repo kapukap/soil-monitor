@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { DeviceService } from './device.service';
-import { DeviceController } from './device.controller';
+import { DevicesService } from './devices.service';
+import { DevicesController } from './devices.controller';
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthModule } from "../auth/auth.module";
 import { Device } from "./device.entity";
@@ -10,7 +10,7 @@ import { UsersRepository } from "../users/users.repository";
 
 @Module({
     imports: [TypeOrmModule.forFeature([Device, User]), AuthModule],
-    providers: [DeviceService, UsersService, UsersRepository],
-    controllers: [DeviceController]
+    providers: [DevicesService, UsersService, UsersRepository],
+    controllers: [DevicesController]
 })
-export class DeviceModule {}
+export class DevicesModule {}

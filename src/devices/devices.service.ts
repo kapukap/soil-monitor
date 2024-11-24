@@ -9,7 +9,7 @@ import { Device } from './device.entity';
 import { UpdateDeviceUserDto } from './dto/update-device-user.dto';
 
 @Injectable()
-export class DeviceService {
+export class DevicesService {
     constructor(
     @InjectRepository(Device)
     private readonly deviceRepository: Repository<Device>,
@@ -17,7 +17,14 @@ export class DeviceService {
     ) {}
 
     async getAll(): Promise<Device[]> {
-        return this.deviceRepository.find();
+        return  this.deviceRepository.find({
+            relations: ['user'],
+            select: {
+                user: {
+                    nick: true
+                },
+            },
+        });
     }
 
     async getDeviceById(id: string): Promise<Device> {
@@ -69,8 +76,11 @@ export class DeviceService {
     ): Promise<Device> {
         const {userId} = updateDeviceUserDto;
         const device = await this.getDeviceById(id);
+        const user = await this.usersService.getUserById(userId);
+
         if (!device) throw new NotFoundException(`Device with ID ${id} not found`);
         if (device.userId) throw new ConflictException(`Device Already Added`);
+        if (!user) throw new NotFoundException();
 
         device.userId = userId;
         await this.deviceRepository.save(device);
@@ -105,7 +115,7 @@ export class DeviceService {
 
         const device = this.deviceRepository.create(createDeviceDto);
         // Code Generator
-        device.code = 'dev-' + Date.now().toString(36);
+        device.code = 'dvc-' + Date.now().toString(36);
 
         try {
             return await this.deviceRepository.save(device);

@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { SoilIndicators } from './soil-indicators.entity';
 import { CreateSoilIndicatorsDto } from './dto/create-soil-indicators.dto';
-import { DeviceService } from '../device/device.service';
+import { DevicesService } from '../devices/devices.service';
 import { SoilTypesService } from '../soil-types/soil-types.service';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class SoilIndicatorsService {
     @InjectRepository(SoilIndicators)
     private readonly soilIndicatorsRepository: Repository<SoilIndicators>,
     private readonly soilTypesService: SoilTypesService,
-    private readonly deviceService: DeviceService,
+    private readonly deviceService: DevicesService,
     ) {}
 
     async getAll(): Promise<SoilIndicators[]> {

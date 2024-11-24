@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Role } from '../roles/role.entity';
 import { Bot } from '../bots/bot.entity';
-import { Device } from '../device/device.entity';
+import { Device } from '../devices/device.entity';
 
 @Entity()
 export class User {
