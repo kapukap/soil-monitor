@@ -6,6 +6,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { Role } from "../roles/role.entity";
 import { RolesService } from "../roles/roles.service";
+import { Device } from "../devices/device.entity";
 
 @Injectable()
 export class UsersService {
@@ -68,5 +69,16 @@ export class UsersService {
         user.role = role;
         await this.usersRepository.save(user);
         return role;
+    }
+
+    async getUserDevices(id: string): Promise<Partial<Device[]>> {
+        const user = await this.usersRepository.getUserWithDevicesById(id);
+        if (!user) {
+            throw new NotFoundException('User not found');
+        }
+
+        if (!user.devices) return [];
+
+        return user.devices;
     }
 }

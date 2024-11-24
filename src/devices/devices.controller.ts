@@ -46,12 +46,12 @@ export class DevicesController {
       return this.deviceService.updateDeviceName(id, updateDeviceNameDto);
   }
 
-  @Patch('/:id/user')
+  @Patch('/:code/user')
   updateUser(
-    @Param('id') id: string,
+    @Param('code') code: string,
     @Body() updateDeviceUserDto: UpdateDeviceUserDto,
   ): Promise<Device> {
-      return this.deviceService.updateDeviceUser(id, updateDeviceUserDto);
+      return this.deviceService.updateDeviceUser(code, updateDeviceUserDto);
   }
 
 

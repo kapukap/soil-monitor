@@ -12,6 +12,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { Role } from '../roles/role.entity';
+import { Device } from "../devices/device.entity";
 
 @Controller('users')
 export class UsersController {
@@ -56,5 +57,11 @@ export class UsersController {
     @Body('roleId') roleId: string,
   ): Promise<Role> {
       return this.usersService.updateUserRole(id, roleId);
+  }
+
+
+  @Get('/:id/devices')
+  async getUserDevices(@Param('id') id: string): Promise<Partial<Device[]>> {
+      return this.usersService.getUserDevices(id);
   }
 }

@@ -29,9 +29,6 @@ export class DevicesService {
 
     async getDeviceById(id: string): Promise<Device> {
         return  await this.deviceRepository.findOneBy({ id });
-
-        // if (!bot) throw new NotFoundException();
-        // return bot;
     }
 
     async getDeviceByCode(code: string): Promise<Device> {
@@ -71,18 +68,19 @@ export class DevicesService {
 
     // Назначение пользователя девайся, если его нет
     async updateDeviceUser(
-        id: string,
+        code: string,
         updateDeviceUserDto: UpdateDeviceUserDto
     ): Promise<Device> {
         const {userId} = updateDeviceUserDto;
-        const device = await this.getDeviceById(id);
+        const device = await this.getDeviceByCode(code);
         const user = await this.usersService.getUserById(userId);
 
-        if (!device) throw new NotFoundException(`Device with ID ${id} not found`);
+        if (!device) throw new NotFoundException(`Device with Code ${code} not found`);
         if (device.userId) throw new ConflictException(`Device Already Added`);
         if (!user) throw new NotFoundException();
 
         device.userId = userId;
+        console.log(device);
         await this.deviceRepository.save(device);
         return device;
     }
