@@ -36,15 +36,16 @@ export class SoilTypesService {
         }
     }
 
-    async updateSoilTypeName(
+    async updateSoilType(
         id: string,
         updateSoilTypeDto: UpdateSoilTypeDto,
     ): Promise<SoilType> {
         const soilType = await this.getSoilTypeById(id);
-        const { name, description } = updateSoilTypeDto;
-
-        soilType.name = name;
-        soilType.description = description;
+        const { name, description, code } = updateSoilTypeDto;
+        console.log(updateSoilTypeDto);
+        if (name) soilType.name = name;
+        if (code) soilType.code = code;
+        if (description !== undefined) soilType.description = description;
 
         await this.soilTypeRepository.save(soilType);
         return soilType;

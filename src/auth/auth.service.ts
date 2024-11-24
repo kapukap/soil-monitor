@@ -15,13 +15,14 @@ export class AuthService {
     private jwtService: JwtService,
     ) {}
 
-    async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
+    async signUp(authCredentialsDto: AuthCredentialsDto): Promise<{ accessToken: string, authId: string }> {
         await this.usersRepository.createUser(authCredentialsDto);
+        return await this.signIn(authCredentialsDto);
     }
 
     async signIn(
         authCredentialsDto: Partial<AuthCredentialsDto>,
-    ): Promise<{ accessToken: string }> {
+    ): Promise<{ accessToken: string, authId: string  }> {
         let user: User;
         const { nick, email, password } = authCredentialsDto;
         if (nick) {
@@ -35,7 +36,10 @@ export class AuthService {
             console.log(this.jwtService);
             const payload: JwtPayloadInterface = { nick };
             const accessToken: string = this.jwtService.sign(payload);
-            return { accessToken };
+            return {
+                accessToken,
+                authId: user.id
+            };
         } else {
             throw new UnauthorizedException('Please check your login credentials');
         }

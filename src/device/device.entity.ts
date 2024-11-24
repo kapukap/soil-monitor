@@ -17,7 +17,7 @@ export class Device {
   @Column({ type: 'varchar', length: 255 })
       name: string;  // Имя прибора который видит пользователь
 
-  @Column({ type: 'varchar', length: 255 })
+  @Column({ type: 'varchar', length: 255, unique: true })
       code: string;  // Уникальный код, для каждого девайса
 
   @ManyToOne(() => User, (user) => user.devices, { nullable: true })

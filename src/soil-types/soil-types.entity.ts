@@ -12,7 +12,8 @@ export class SoilType {
       name: string;
 
   @Column('text', {unique: true})
-      code: SoilTypeCodes;
+      code: string;
+      // code: SoilTypeCodes | string;
 
   @Column('text', { nullable: true })
       description: string | null;

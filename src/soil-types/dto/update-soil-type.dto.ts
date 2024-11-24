@@ -6,7 +6,8 @@ export class UpdateSoilTypeDto {
       name: string;
 
   @IsOptional()
-      code: SoilTypeCodes;
+      code: string;
+      // code: SoilTypeCodes | string;
 
   @IsOptional()
       description: string;

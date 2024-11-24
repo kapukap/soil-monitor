@@ -36,7 +36,7 @@ export class SoilTypesController {
     @Param('id') id: string,
     @Body() updateSoilTypeDto: UpdateSoilTypeDto,
   ): Promise<SoilType> {
-      return this.soilTypesService.updateSoilTypeName(id, updateSoilTypeDto);
+      return this.soilTypesService.updateSoilType(id, updateSoilTypeDto);
   }
 
   @Post()
