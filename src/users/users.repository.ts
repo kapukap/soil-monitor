@@ -48,6 +48,13 @@ export class UsersRepository extends Repository<User> {
         return user;
     }
 
+    async getUserWithRoleById(id: string): Promise<User> {
+        return await this.usersRepository.findOne({
+            where: { id },
+            relations: ['role'],
+        });
+    }
+
     async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<User> {
         const user = await this.getUserById(id);
         const updateFields = Object.keys(updateUserDto);

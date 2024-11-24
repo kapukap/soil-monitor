@@ -11,10 +11,12 @@ import { SoilType } from '../soil-types/soil-types.entity';
 import { UsersService } from '../users/users.service';
 import { UsersRepository } from '../users/users.repository';
 import { User } from '../users/user.entity';
+import { Role } from "../roles/role.entity";
+import { RolesService } from "../roles/roles.service";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([SoilIndicators, SoilType, Device, User]), AuthModule],
+    imports: [TypeOrmModule.forFeature([SoilIndicators, SoilType, Device, User, Role]), AuthModule],
     controllers: [SoilIndicatorsController],
-    providers: [SoilIndicatorsService, SoilTypesService, DevicesService, UsersService, UsersRepository],
+    providers: [SoilIndicatorsService, SoilTypesService, DevicesService, UsersService, UsersRepository, RolesService],
 })
 export class SoilIndicatorsModule {}

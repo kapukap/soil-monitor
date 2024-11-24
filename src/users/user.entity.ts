@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from '../roles/role.entity';
 import { Bot } from '../bots/bot.entity';
 import { Device } from '../devices/device.entity';
@@ -26,8 +26,8 @@ export class User {
   @Column('text')
       password: string;
 
-  @OneToMany(() => Role, (role) => role.users)
-      roles: Role[];
+  @ManyToOne(() => Role, (role) => role.users)
+      role: Role;
 
   // Связь один ко многим с сущностью Bot (один пользователь может иметь несколько ботов, но для каждого типа мессенджера только один)
   @OneToMany(() => Bot, (bot) => bot.user)

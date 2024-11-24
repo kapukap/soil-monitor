@@ -11,6 +11,7 @@ import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
+import { Role } from '../roles/role.entity';
 
 @Controller('users')
 export class UsersController {
@@ -43,17 +44,17 @@ export class UsersController {
   ): Promise<User> {
       return this.usersService.updateUser(id, updateUserDto);
   }
-  //
-  // @Patch(':userId/roles/:roleId')
-  // async addRole(
-  //   @Param('userId') userId: string,
-  //   @Param('roleId') roleId: string,
-  // ) {
-  //   return await this.usersService.addRoleToUser(userId, roleId);
-  // }
 
-  @Get('/:id/roles')
-  async getUserRoles(@Param('id') id: string): Promise<User[]> {
-      return this.usersService.getUserRoles(id);
+  @Get('/:id/role')
+  async getUserRole(@Param('id') id: string): Promise<Partial<Role>> {
+      return this.usersService.getUserRole(id);
+  }
+
+  @Patch('/:id/role')
+  async updateUserRole(
+    @Param('id') id: string,
+    @Body('roleId') roleId: string,
+  ): Promise<Role> {
+      return this.usersService.updateUserRole(id, roleId);
   }
 }

@@ -4,12 +4,15 @@ import { User } from './user.entity';
 import { UsersRepository } from './users.repository';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
+import { Role } from "../roles/role.entity";
+import { RolesService } from "../roles/roles.service";
 
 @Injectable()
 export class UsersService {
     constructor(
     @InjectRepository(UsersRepository)
     private readonly usersRepository: UsersRepository, // private readonly roleRepository: Repository<Role>,
+    private readonly rolesService: RolesService, // private readonly roleRepository: Repository<Role>,
     ) {}
 
     async getAll(): Promise<User[]> {
@@ -36,21 +39,34 @@ export class UsersService {
         await this.usersRepository.createUser(createUserDto);
     }
 
-    // // TODO Remove to repository?
-    // // Добавление роли пользователю
-    // async addRoleToUser(userId: string, roleId: string): Promise<User> {
-    //   return this.usersRepository.addRoleToUser(userId, roleId);
-    // }
+    async getUserRole(id: string): Promise<Partial<Role>> {
+        const user = await this.usersRepository.getUserWithRoleById(id);
+        if (!user) {
+            throw new NotFoundException('User not found');
+        }
 
-    async getUserRoles(userId: string): Promise<User[]> {
-        console.log(userId);
-        // relations: [''],
-        //   select: {
-        //     user: {
-        //         nick: true
-        //     },
-        return this.usersRepository.find({
-            relations: ['roles']
-        });
+        if (!user.role) return {};
+
+        return {
+            id: user.role.id,
+            name: user.role.name,
+        };
+    }
+
+
+    async updateUserRole(id: string, roleId: string): Promise<Role> {
+        const user = await this.usersRepository.getUserWithRoleById(id);
+        if (!user) {
+            throw new NotFoundException('User not found');
+        }
+
+        const role = await this.rolesService.getRoleById(roleId);
+        if (!role) {
+            throw new NotFoundException('Role not found');
+        }
+
+        user.role = role;
+        await this.usersRepository.save(user);
+        return role;
     }
 }
