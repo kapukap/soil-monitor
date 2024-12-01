@@ -13,7 +13,7 @@ import { Device } from '../devices/device.entity';
 @Entity()
 export class SoilIndicators {
   @PrimaryGeneratedColumn('uuid')
-      id: number;
+      id: string;
 
   @Column('float')
       moisture: number; // Волога

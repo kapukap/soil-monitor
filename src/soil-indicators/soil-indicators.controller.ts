@@ -13,8 +13,13 @@ export class SoilIndicatorsController {
     }
 
   @Get('/:id')
-  async getById(@Param('id') id: number): Promise<SoilIndicators> {
+  async getById(@Param('id') id: string): Promise<SoilIndicators> {
       return this.soilIndicatorsService.getById(id);
+  }
+
+  @Get('/device/:deviceId')
+  async getByDeviceId(@Param('deviceId') deviceId: string): Promise<SoilIndicators[]> {
+      return this.soilIndicatorsService.getByDeviceId(deviceId);
   }
 
   @Post()

@@ -26,9 +26,22 @@ export class SoilIndicatorsService {
         });
     }
 
-    async getById(id: number): Promise<SoilIndicators> {
+    async getById(id: string): Promise<SoilIndicators> {
         return this.soilIndicatorsRepository.findOne({
             where: { id },
+        });
+    }
+
+    async getByDeviceId(deviceId: string): Promise<SoilIndicators[]> {
+        return this.soilIndicatorsRepository.find({
+            relations: ['soilType'],
+            where: { deviceId },
+            select: {
+                soilType: {
+                    name: true,
+                    code: true
+                },
+            },
         });
     }
 
