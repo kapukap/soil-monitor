@@ -16,7 +16,14 @@ export class SoilIndicatorsService {
     ) {}
 
     async getAll(): Promise<SoilIndicators[]> {
-        return this.soilIndicatorsRepository.find();
+        return this.soilIndicatorsRepository.find({
+            relations: ['soilType'], // Подгружаем связанные данные
+            select: {
+                soilType: {
+                    name: true
+                },
+            },
+        });
     }
 
     async getById(id: number): Promise<SoilIndicators> {

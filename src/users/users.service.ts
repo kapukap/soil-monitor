@@ -7,6 +7,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { Role } from "../roles/role.entity";
 import { RolesService } from "../roles/roles.service";
 import { Device } from "../devices/device.entity";
+import { RoleConstants } from '../roles/constants/role.constants';
+import { UsersRolesService } from '../users-roles/users-roles.service';
 
 @Injectable()
 export class UsersService {

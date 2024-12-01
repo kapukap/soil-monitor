@@ -11,12 +11,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { AuthCredentialsDto } from '../auth/dto/auth-credentials.dto';
 import { ErrorCodes } from '../Utils/Errors/errors-constaints.enum';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { RolesService } from '../roles/roles.service';
+import { RoleConstants } from '../roles/constants/role.constants';
 
 @Injectable()
 export class UsersRepository extends Repository<User> {
     constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
+    private readonly rolesService: RolesService,
     ) {
         super(usersRepository.target, usersRepository.manager);
     }
@@ -26,7 +29,10 @@ export class UsersRepository extends Repository<User> {
 
         const salt = await bcrypt.genSalt();
         const hashPass = await bcrypt.hash(password, salt);
-        const user = this.create({ nick, password: hashPass, email });
+        const role = await this.rolesService.getRoleByName(RoleConstants.USER);
+        if (!role) throw new NotFoundException();
+
+        const user = this.create({ nick, password: hashPass, email, role: {id: role.id} });
         try {
             await this.save(user);
         } catch (e) {

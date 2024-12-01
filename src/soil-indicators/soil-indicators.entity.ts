@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable, JoinColumn } from 'typeorm';
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from 'typeorm';
 import { SoilType } from '../soil-types/soil-types.entity';
 import { Device } from '../devices/device.entity';
 
@@ -28,7 +36,7 @@ export class SoilIndicators {
   @Column('text')
       potassium: string; // Калий K
 
-  @Column('text', {nullable: false})
+  @Column('text', { nullable: false })
       deviceCode: string; // Сохраняем код который пришел
 
   @ManyToOne(() => SoilType, (soilType) => soilType.soilIndicators)
@@ -36,13 +44,22 @@ export class SoilIndicators {
       soilType: SoilType;
 
   @Column()
-      soilTypeId: string;  // Внешний ключ, связывающий с BotType
+      soilTypeId: string; // Внешний ключ, связывающий с BotType
 
-  @ManyToOne(() => Device, (device) => device.soilIndicators, { nullable: true })
+  @ManyToOne(() => Device, (device) => device.soilIndicators, {
+      nullable: true,
+  })
   @JoinColumn({ name: 'deviceId' })
       device: Device;
 
-  @Column({nullable: true})
-      deviceId: string;  // Внешний ключ, связывающий с BotType
+  @Column({ nullable: true })
+      deviceId: string; // Внешний ключ, связывающий с BotType
 
+  // Дата и время создания записи
+  @CreateDateColumn({ type: 'timestamptz' })
+      createdAt: Date;
+
+  // Дата и время последнего обновления записи
+  @UpdateDateColumn({ type: 'timestamptz' })
+      updatedAt: Date;
 }

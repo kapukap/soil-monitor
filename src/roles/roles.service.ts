@@ -27,6 +27,10 @@ export class RolesService {
         return role;
     }
 
+    async getRoleByName(name: string): Promise<Role> {
+        return await this.roleRepository.findOneBy({ name });
+    }
+
     async deleteRole(id: string): Promise<void> {
         const result = await this.roleRepository.delete({ id });
 
