@@ -20,7 +20,7 @@ export class BotTypesService {
     async getBotTypeById(id: string): Promise<BotType> {
         const botType = await this.botTypeRepository.findOneBy({ id });
 
-        // TODO Поставить проверку на уровень выше
+        // TODO Поставити перевірку на рівень вище
         if (!botType) throw new NotFoundException();
         return botType;
     }

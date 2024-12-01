@@ -15,13 +15,13 @@ import { UserRole } from './users-roles.entity';
 export class UsersRolesController {
     constructor(private readonly usersRolesService: UsersRolesService) {}
 
-  // Получить роли по пользователю
+  // Отримати ролі по користувачеві
   @Get()
     async getAll() {
         return this.usersRolesService.getAll();
     }
 
-  // Получить роли по пользователю
+  // Отримати ролі по користувачеві
   @Get(':userId')
   async getUserRoles(@Param('userId') userId: string) {
       return this.usersRolesService.getUserRole(userId);
@@ -34,7 +34,7 @@ export class UsersRolesController {
       return this.usersRolesService.createUserRole(createUserRoleDto);
   }
 
-  // Удалить роль у пользователя
+  // Видалити роль користувача
   @Delete(':userId')
   async removeRole(@Param('userId') userId: string) {
       return this.usersRolesService.removeRoleFromUser(userId);

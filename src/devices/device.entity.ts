@@ -12,20 +12,20 @@ import { SoilIndicators } from '../soil-indicators/soil-indicators.entity';
 @Unique(['userId', 'code'])
 export class Device {
   @PrimaryGeneratedColumn('uuid')
-      id: string;  // Уникальный идентификатор бота
+      id: string;  // Унікальний ідентифікатор пристрою
 
   @Column({ type: 'varchar', length: 255 })
-      name: string;  // Имя прибора который видит пользователь
+      name: string;  // Ім'я пристрою, який бачить користувач
 
   @Column({ type: 'varchar', length: 255, unique: true })
-      code: string;  // Уникальный код, для каждого девайса
+      code: string;  // Унікальний код, для кожного девайсу свій
 
   @ManyToOne(() => User, (user) => user.devices, { nullable: true })
-  @JoinColumn({ name: 'userId' })  // Это внешний ключ для связи с пользователем
+  @JoinColumn({ name: 'userId' })  // Зовнішній ключ для звяки з користувачем
       user: User;
 
   @Column({nullable: true})
-      userId: string;  // Внешний ключ, связывающий с User
+      userId: string;  // Зовнішній ключ, зв'язуючий з User
 
   @OneToMany(() => SoilIndicators, (soilIndicator) => soilIndicator.device)
       soilIndicators: SoilIndicators[];

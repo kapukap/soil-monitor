@@ -65,7 +65,7 @@ export class BotsService {
         createBotDto: CreateBotDto,
     ): Promise<Bot> {
         const {botTypeId, userId} = createBotDto;
-        // Если не найдет тип, выдаст ошибку
+        // Якщо не знайде тип, видасть помилку
         try {
             await this.botTypesService.getBotTypeById(botTypeId);
             await this.usersService.getUserById(userId);

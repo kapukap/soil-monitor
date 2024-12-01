@@ -16,16 +16,16 @@ export class SoilIndicators {
       id: number;
 
   @Column('float')
-      moisture: number; // Влага
+      moisture: number; // Волога
 
   @Column('float')
       temperature: number; // Температура
 
   @Column('float')
-      acidity: number; // Кислотность pH
+      acidity: number; // Кислотність pH
 
   @Column('float')
-      electricalConductivity: number; // Электропроводность = Соленость
+      electricalConductivity: number; // Електропровідність = Солоність
 
   @Column('text')
       nitrogen: string; // Азот N
@@ -34,17 +34,17 @@ export class SoilIndicators {
       phosphorus: string; // Фосфор P
 
   @Column('text')
-      potassium: string; // Калий K
+      potassium: string; // Калій K
 
   @Column('text', { nullable: false })
-      deviceCode: string; // Сохраняем код который пришел
+      deviceCode: string; // Зберігаємо код, який прийшов
 
   @ManyToOne(() => SoilType, (soilType) => soilType.soilIndicators)
   @JoinColumn({ name: 'soilTypeId' })
       soilType: SoilType;
 
   @Column()
-      soilTypeId: string; // Внешний ключ, связывающий с BotType
+      soilTypeId: string; // Зовнішній ключ, який зв'язує з SoilType
 
   @ManyToOne(() => Device, (device) => device.soilIndicators, {
       nullable: true,
@@ -53,13 +53,13 @@ export class SoilIndicators {
       device: Device;
 
   @Column({ nullable: true })
-      deviceId: string; // Внешний ключ, связывающий с BotType
+      deviceId: string; // Зовнішній ключ, який зв'язує з Device
 
-  // Дата и время создания записи
+  // Дата та час створення запису
   @CreateDateColumn({ type: 'timestamptz' })
       createdAt: Date;
 
-  // Дата и время последнего обновления записи
+  // Дата та час останнього оновлення запису
   @UpdateDateColumn({ type: 'timestamptz' })
       updatedAt: Date;
 }

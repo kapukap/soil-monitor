@@ -66,7 +66,7 @@ export class DevicesService {
         }
     }
 
-    // Назначение пользователя девайся, если его нет
+    // Призначення користувача девайсу, якщо його немає
     async updateDeviceUser(
         code: string,
         updateDeviceUserDto: UpdateDeviceUserDto
@@ -85,7 +85,7 @@ export class DevicesService {
         return device;
     }
 
-    // Отвязка девайса от текущего пользователя
+    // Відв'язування девайса від поточного користувача
     async unlinkDeviceUser(
         id: string,
         updateDeviceUserDto: UpdateDeviceUserDto
@@ -109,7 +109,7 @@ export class DevicesService {
     async createDevice(
         createDeviceDto: CreateDeviceDto,
     ): Promise<Device> {
-        // Если не найдет тип, выдаст ошибку
+        // Якщо тип не знайде, видасть помилку
 
         const device = this.deviceRepository.create(createDeviceDto);
         // Code Generator

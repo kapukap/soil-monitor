@@ -1,15 +1,15 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Bot } from '../bots/bot.entity'; // Импортируем сущность Bot, так как она будет связана
+import { Bot } from '../bots/bot.entity'; // Імпортуємо сутність Bot, оскільки вона буде пов'язана
 
 @Entity()
 export class BotType {
   @PrimaryGeneratedColumn('uuid')
-      id: string;  // Уникальный идентификатор типа бота (например, Telegram, Viber и т. д.)
+      id: string;  // Унікальний ідентифікатор типа боту (наприклад, WhatsApp, Viber та інші)
 
   @Column({ type: 'varchar', length: 255, unique: true })
-      name: string;  // Название мессенджера, например, "Telegram", "Viber"
+      name: string;  // Назва самого месенджеру
 
-  // Связь с сущностью Bot (один тип бота может быть у многих ботов)
+  // Зв'язок із сутністю Bot (один тип бота може бути у багатьох ботів)
   @OneToMany(() => Bot, (bot: Bot) => bot.botType)
       bots: Bot[];
 }

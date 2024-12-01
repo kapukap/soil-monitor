@@ -13,25 +13,25 @@ import { User } from '../users/user.entity';
 @Unique(['userId', 'botTypeId'])
 export class Bot {
   @PrimaryGeneratedColumn('uuid')
-      id: string;  // Уникальный идентификатор бота
+      id: string;  // Унікальний ідентифікатор бота
 
   @Column({ type: 'varchar', length: 255 })
-      code: string;  // Код бота (например, токен)
+      code: string;  // Код бота (наприклад, токен)
 
   @Column({ type: 'varchar', length: 255, nullable: true })
-      messengerId: string;  // Идентификатор бота в мессенджере (например, username в Telegram)
+      messengerId: string;  // Ідентифікатор бота в месенджері (наприклад, username в Telegram)
 
   @ManyToOne(() => BotType, (botType) => botType.bots)
-  @JoinColumn({ name: 'botTypeId' })  // Указываем внешний ключ для связи с BotType
-      botType: BotType;  // Связь с типом бота
+  @JoinColumn({ name: 'botTypeId' }) // Вказується зовнішній ключ для зв'язку з BotType
+      botType: BotType; // Зв'язок із типом бота
 
   @Column()
-      botTypeId: string;  // Внешний ключ, связывающий с BotType
+      botTypeId: string; // Зовнішній ключ, що пов'язує з BotType
 
   @ManyToOne(() => User, (user) => user.bots)
-  @JoinColumn({ name: 'userId' })  // Указываем внешний ключ для связи с User
-      user: User;  // Связь с пользователем
+  @JoinColumn({ name: 'userId' }) // Вказується зовнішній ключ для зв'язку з User
+      user: User; // Зв'язок із користувачем
 
   @Column()
-      userId: string;  // Внешний ключ, связывающий с User
+      userId: string; // Зовнішній ключ, який зв'язує з User
 }

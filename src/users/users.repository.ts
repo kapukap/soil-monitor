@@ -87,30 +87,4 @@ export class UsersRepository extends Repository<User> {
             }
         }
     }
-
-    // Добавить роль пользователю
-    // async addRoleToUser(userId: string, roleId: string): Promise<User> {
-    //   const user = await this.findOne({
-    //     where: { id: userId },
-    //     relations: ['roles'],
-    //   });
-    //   if (!user) {
-    //     throw new Error(`User with ID ${userId} not found`);
-    //   }
-    //
-    //   // Правильный поиск роли с использованием where
-    //   const role = await this.manager
-    //     .getRepository(Role)
-    //     .findOne({ where: { id: roleId } });
-    //   if (!role) {
-    //     throw new Error(`Role with ID ${roleId} not found`);
-    //   }
-    //
-    //   // Добавление роли пользователю, если она ещё не добавлена
-    //   if (!user.roles.some((existingRole) => existingRole.id === role.id)) {
-    //     user.roles.push(role);
-    //   }
-    //
-    //   return this.save(user);
-    // }
 }
