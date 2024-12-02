@@ -33,6 +33,16 @@ export class DevicesController {
       return this.deviceService.getDeviceById(id);
   }
 
+  @Get('/:id/soil-indicators/latest')
+  async getLatestIndicatorsByUser(@Param('id') id: string): Promise<any> {
+      return this.deviceService.getLatestIndicatorsByUser(id);
+  }
+
+  @Get('/:id/soil-indicators/latest-dynamic')
+  async getLastIndicatorsByUser(@Param('id') id: string): Promise<any> {
+      return this.deviceService.getLastIndicatorsByUser(id);
+  }
+
   @Delete('/:id')
   delete(@Param('id') id: string): Promise<void> {
       return this.deviceService.deleteDevice(id);

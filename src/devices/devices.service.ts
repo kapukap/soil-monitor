@@ -35,6 +35,73 @@ export class DevicesService {
         return  await this.deviceRepository.findOneBy({ code });
     }
 
+    async getLatestIndicatorsByUser(userId: string): Promise<any> {
+        const devices = await this.deviceRepository.find({
+            where: { user: { id: userId } },
+            relations: ['soilIndicators'],
+            select: {
+                id: true,
+                name: true,
+                soilIndicators: {
+                    id: true,
+                    nitrogen: true,
+                    phosphorus: true,
+                    potassium: true,
+                    electricalConductivity: true,
+                    createdAt: true,
+                },
+            },
+        });
+
+        return devices.map((device) => {
+            const [first, ...other] = device.soilIndicators.sort(
+                (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            );
+            return {
+                deviceId: device.id,
+                deviceName: device.name,
+                indicators: first
+            };
+        });
+    }
+
+    async getLastIndicatorsByUser(userId: string): Promise<any> {
+        const devices = await this.deviceRepository.find({
+            where: { user: { id: userId } },
+            relations: ['soilIndicators'],
+            select: {
+                id: true,
+                name: true,
+                code: true,
+                soilIndicators: {
+                    id: true,
+                    moisture: true,
+                    temperature: true,
+                    acidity: true,
+                    createdAt: true,
+                },
+            },
+        });
+
+        if (!devices.length) {
+            return {};
+        }
+
+        const sortedDevices = devices
+            .filter((device) => device.soilIndicators.length > 0)
+            .sort((a, b) => {
+                const aLastCreatedAt = Math.max(
+                    ...a.soilIndicators.map((indicator) => new Date(indicator.createdAt).getTime())
+                );
+                const bLastCreatedAt = Math.max(
+                    ...b.soilIndicators.map((indicator) => new Date(indicator.createdAt).getTime())
+                );
+                return bLastCreatedAt - aLastCreatedAt;
+            });
+
+        return sortedDevices[0];
+    }
+
 
 
     async deleteDevice(id: string): Promise<void> {
